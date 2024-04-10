@@ -15,7 +15,13 @@ function createWindow(): void {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: true,
       contextIsolation: true
-    }
+    },
+    center: true,
+    title: 'Notes',
+    frame: false,
+    vibrancy: 'under-window',
+    trafficLightPosition: { x: 15, y: 25 },
+    titleBarStyle: 'hidden'
   })
 
   mainWindow.on('ready-to-show', () => {
