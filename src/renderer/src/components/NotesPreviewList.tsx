@@ -12,7 +12,7 @@ export const NotesPreviewList = ({ className, ...props }: ComponentProps<'ul'>) 
     )
   }
   return (
-    <ul {...props}>
+    <ul className={className} {...props}>
       {notesMock?.map((item) => <NotePreview key={item.title + item.lastEditTime} {...item} />)}
     </ul>
   )
