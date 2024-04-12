@@ -23,10 +23,12 @@ const selectedNoteAtomAsync = atom(async (get) => {
   }
 })
 export const selectedNoteAtom = unwrap(selectedNoteAtomAsync, (prev) => prev)
-export const createEmptyNoteAtom = atom(null, (get, set) => {
+// for creating a new note
+export const createEmptyNoteAtom = atom(null, async (get, set) => {
   const notes = get(notesAtom)
   if (!notes) return
-  const title = `Note ${notes?.length + 1}`
+  const title = await window.context.createNote()
+  if (!title) return
   const newNote: NoteInfo = {
     title,
     lastEditTime: Date.now()

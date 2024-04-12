@@ -3,7 +3,9 @@ import { appDirectoryName, fileEncoding } from '../../shared/constants'
 import { ensureDir, readdir, stat, readFile, writeFile } from 'fs-extra'
 
 import { NoteInfo } from '../../shared/model'
-import { GetNotes, ReadNote, WriteNote } from '../../shared/types'
+import { CreateNote, GetNotes, ReadNote, WriteNote } from '../../shared/types'
+import { dialog } from 'electron'
+import path from 'path'
 
 export const getHomeDir = () => {
   return `${homedir()}/${appDirectoryName}`
@@ -42,4 +44,37 @@ export const writeNote: WriteNote = async (filename, content) => {
   return writeFile(`${rootDir}/${filename}.md`, content, {
     encoding: fileEncoding
   })
+}
+// A function to create a new note
+export const createNote: CreateNote = async () => {
+  const rootDir = getHomeDir()
+  await ensureDir(rootDir)
+  // show the dialog to the user
+  const { filePath, canceled } = await dialog.showSaveDialog({
+    title: 'New note',
+    defaultPath: `${rootDir}/Untitled.md`,
+    buttonLabel: 'Create',
+    properties: ['showOverwriteConfirmation'],
+    showsTagField: false,
+    filters: [{ name: 'Mardown', extensions: ['md'] }]
+  })
+  if (canceled || !filePath) {
+    console.info('User canceled the dialog')
+    return false
+  }
+  const { name: filename, dir: parentDir } = path.parse(filePath)
+  // check if the parent directory is the root directory
+  if (parentDir !== rootDir) {
+    await dialog.showMessageBox({
+      type: 'error',
+      title: 'Creation Failed',
+      message: 'You can only create notes in the notes-app directory'
+    })
+    return false
+  }
+  // create a new note
+  console.info('Creating a new note')
+  console.info('filePath:', filePath)
+  await writeFile(filePath, '')
+  return filename
 }
