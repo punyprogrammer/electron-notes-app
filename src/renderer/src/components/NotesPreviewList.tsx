@@ -1,5 +1,4 @@
 import { ComponentProps } from 'react'
-import { notesMock } from '../../../renderer/src/store/mocks/index'
 import { NotePreview } from './NotePreview'
 import { twMerge } from 'tailwind-merge'
 import { useNotesList } from '../hooks/useNotesList'
