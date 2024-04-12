@@ -1,4 +1,3 @@
-import { prop } from '@mdxeditor/editor'
 import { ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { useAtomValue } from 'jotai'
@@ -8,7 +7,7 @@ export const FloatingTItleText = ({ className, ...props }: ComponentProps<'div'>
   const selectedNote = useAtomValue(selectedNoteAtom)
   if (!selectedNote) return null
   return (
-    <div className={twMerge('flex justify-center', className)} {...prop}>
+    <div className={twMerge('flex justify-center', className)} {...props}>
       <span className="text-gray-400">{selectedNote?.title}</span>
     </div>
   )

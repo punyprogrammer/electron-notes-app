@@ -14,7 +14,7 @@ export const useNotesList = ({ onSelect }: { onSelect?: () => void }): UseNoteLi
     if (onSelect) onSelect()
   }
   return {
-    notes,
+    notes: notes || [],
     selectedNoteIndex,
     handleOnSelect
   }
