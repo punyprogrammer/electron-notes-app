@@ -1,9 +1,10 @@
 import { homedir } from 'os'
 import { appDirectoryName, fileEncoding } from '../../shared/constants'
-import { ensureDir, readdir, stat } from 'fs-extra'
+import { ensureDir, readdir, stat, readFile } from 'fs-extra'
 
 import { NoteInfo } from '../../shared/model'
-import { GetNotes } from '../../shared/types'
+import { GetNotes, ReadNote } from '../../shared/types'
+
 export const getHomeDir = () => {
   return `${homedir()}/${appDirectoryName}`
 }
@@ -18,10 +19,15 @@ export const getNotes: GetNotes = async () => {
   })
   //   get all file names with .md extension
   const notes = notesFileName.filter((name) => name.endsWith('.md'))
-  console.log(notes)
   return Promise.all(notes.map((note) => getNoteInfoFromFilename(note)))
 }
-
+// read notes from file system
+export const readNote: ReadNote = async (filename: string) => {
+  const rootDir = getHomeDir()
+  return readFile(`${rootDir}/${filename}.md`, {
+    encoding: fileEncoding
+  })
+}
 export const getNoteInfoFromFilename = async (fileName: string): Promise<NoteInfo> => {
   const fileStats = await stat(`${getHomeDir()}/${fileName}`)
   return {
