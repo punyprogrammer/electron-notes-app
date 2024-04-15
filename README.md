@@ -37,5 +37,5 @@ $ yarn build:linux
 
 ### OS-Specific-builds
 [Mac](https://drive.google.com/file/d/1y3OmzX373xQ2YxVfLwH9ra82MElKttMp/view?usp=sharing)
-[Windows](https://drive.google.com/file/d/1ll-bHQ5caiX9qgAo2v4LevMEw68cbyEF/view?usp=sharing)
+[Windows](https://drive.google.com/drive/folders/1nC14qv3A7NA0UgVP8l-2xFeSx_ga9ch7?usp=sharing)
 
