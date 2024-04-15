@@ -6,7 +6,7 @@ import { NoteInfo } from '../../shared/model'
 import { CreateNote, DeleteNote, GetNotes, ReadNote, WriteNote } from '../../shared/types'
 import { dialog } from 'electron'
 import path from 'path'
-
+import welcomeNote from '../../../resources/welcomeNote.md?asset'
 export const getHomeDir = () => {
   return `${homedir()}/${appDirectoryName}`
 }
@@ -21,6 +21,17 @@ export const getNotes: GetNotes = async () => {
   })
   //   get all file names with .md extension
   const notes = notesFileName.filter((name) => name.endsWith('.md'))
+
+  // if no note is present read from  the welcomNote.md
+  if (notes.length === 0) {
+    console.info('No notes found, creating a welcome note')
+    const content = await readFile(welcomeNote, { encoding: fileEncoding })
+    // create the welcome note
+    await writeFile(`${rootDir}/Welcome.md`, content, {
+      encoding: fileEncoding
+    })
+    notes.push('Welcome.md')
+  }
   return Promise.all(notes.map((note) => getNoteInfoFromFilename(note)))
 }
 // read notes from file system
