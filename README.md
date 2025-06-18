@@ -4,7 +4,7 @@ An Electron application with React and TypeScript
 
 ## Recommended IDE Setup
 
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [VSCode](https://github.com/punyprogrammer/electron-notes-app/releases) + [ESLint](https://github.com/punyprogrammer/electron-notes-app/releases) + [Prettier](https://github.com/punyprogrammer/electron-notes-app/releases)
 
 ## Project Setup
 
@@ -36,6 +36,6 @@ $ yarn build:linux
 ```
 
 ### OS-Specific-builds
-[Mac](https://drive.google.com/file/d/1y3OmzX373xQ2YxVfLwH9ra82MElKttMp/view?usp=sharing)
-[Windows](https://drive.google.com/drive/folders/1nC14qv3A7NA0UgVP8l-2xFeSx_ga9ch7?usp=sharing)
+[Mac](https://github.com/punyprogrammer/electron-notes-app/releases)
+[Windows](https://github.com/punyprogrammer/electron-notes-app/releases)
 
